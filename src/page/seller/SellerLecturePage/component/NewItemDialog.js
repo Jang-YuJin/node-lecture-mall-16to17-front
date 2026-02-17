@@ -119,14 +119,15 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
     }
 
     // 강의 영상을 배열에서 객체 배열로 바꿔주기
-    const totalLectureVideo = lectureVideo.reduce((total, item) => {
-      return [...total, {title: item[0], url: item[1]}]
-    }, []);
+    const totalLectureVideo = lectureVideo.map(([title, url]) => ({
+      title,
+      url,
+    }));
     // 실물 교재 객체로 바꿔주기
     const realTxtbkStck = {bind: bindCnt, book: bookCnt};
     if (mode === "new") {
       //새 상품 만들기
-      dispatch(createLecture({...formData, txtbkStck: realTxtbkStck, fileTxtbk: fileTxtbk, items: lectureVideo}));
+      dispatch(createLecture({...formData, txtbkStck: realTxtbkStck, fileTxtbk: fileTxtbk, items: lecturtotalLectureVideoeVideo}));
     } else {
       // 상품 수정하기
     }
