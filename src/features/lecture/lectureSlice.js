@@ -39,7 +39,7 @@ export const getLectureDetail = createAsyncThunk(
 
 export const createLecture = createAsyncThunk(
   "lectures/createLecture",
-  async (formData, { dispatch, rejectWithValue }) => {
+  async (formData, { dispatch, getState, rejectWithValue }) => {
     try {
       const response = await api.post('/lecture', formData);
 
@@ -48,7 +48,8 @@ export const createLecture = createAsyncThunk(
       }
 
       dispatch(showToastMessage({message: '강의 등록 완료', status: 'success'}));
-      dispatch(getLectureList({page: 1}));
+      const userId = getState()?.user?.user?._id;
+      dispatch(getLectureList({ page: 1, userId }));
 
       return response.data.data;
     } catch (error) {
