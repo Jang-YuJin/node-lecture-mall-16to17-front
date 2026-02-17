@@ -127,7 +127,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
     const realTxtbkStck = {bind: bindCnt, book: bookCnt};
     if (mode === "new") {
       //새 상품 만들기
-      dispatch(createLecture({...formData, txtbkStck: realTxtbkStck, fileTxtbk: fileTxtbk, items: lecturtotalLectureVideoeVideo}));
+      dispatch(createLecture({...formData, txtbkStck: realTxtbkStck, fileTxtbk: fileTxtbk, items: totalLectureVideo}));
     } else {
       // 상품 수정하기
     }
