@@ -118,9 +118,6 @@ const SellerLecturePage = () => {
         mode={mode}
         showDialog={showDialog}
         setShowDialog={setShowDialog}
-        onSuccess={() => {
-          dispatch(getLectureList(searchQuery));
-        }}
       />
     </div>
   );

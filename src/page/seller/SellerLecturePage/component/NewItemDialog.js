@@ -32,7 +32,7 @@ const InitialFormData = {
   dscntRt: 0
 };
 
-const NewItemDialog = ({ mode, showDialog, setShowDialog, onSuccess }) => {
+const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   const { error, success, selectedLecture, lectureSno } = useSelector(
     (state) => state.lecture
   );
@@ -49,10 +49,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog, onSuccess }) => {
   const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
-    if (success) {
-      setShowDialog(false);
-      onSuccess();
-    }
+    if (success) setShowDialog(false);
   }, [success]);
 
   useEffect(() => {
@@ -129,7 +126,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog, onSuccess }) => {
     const realTxtbkStck = {bind: bindCnt, book: bookCnt};
     if (mode === "new") {
       //새 상품 만들기
-      dispatch(createLecture({...formData, txtbkStck: realTxtbkStck, fileTxtbk: fileTxtbk, lectureVideo: lectureVideo}));
+      dispatch(createLecture({...formData, txtbkStck: realTxtbkStck, fileTxtbk: fileTxtbk, items: lectureVideo}));
     } else {
       // 상품 수정하기
     }

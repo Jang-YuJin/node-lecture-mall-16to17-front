@@ -48,6 +48,7 @@ export const createLecture = createAsyncThunk(
       }
 
       dispatch(showToastMessage({message: '강의 등록 완료', status: 'success'}));
+      dispatch(getLectureList({page: 1}));
 
       return response.data.data;
     } catch (error) {
@@ -93,14 +94,12 @@ const lectureSlice = createSlice({
   extraReducers: (builder) => {
   builder
     .addCase(getLectureSno.pending, (state) => {
-      state.loading = true;
+      state.error = "";
     })
     .addCase(getLectureSno.fulfilled, (state, action) => {
-      state.loading = false;
       state.lectureSno = action.payload.sno;
     })
     .addCase(getLectureSno.rejected, (state, action) => {
-      state.loading = false;
       state.error = action.payload;
     })
     .addCase(createLecture.pending, (state) => {
